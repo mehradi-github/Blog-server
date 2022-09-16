@@ -8,7 +8,6 @@ npm init -y
 npm i -D nodemon typescript ts-node-dev
 tsc --init
 ```
-## 
 
 Apollo Studio is a cloud platform that helps you build, validate, and secure your organization's graph. [Get started here!](https://www.apollographql.com/docs/studio/getting-started/)
 
