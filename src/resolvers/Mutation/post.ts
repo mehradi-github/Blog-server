@@ -1,6 +1,7 @@
 import { Post, Prisma } from '@prisma/client';
 import { networkInterfaces } from 'os';
 import { Context } from '../..';
+import { canUserMutatePost } from '../../utils/canUserMutatePost';
 
 interface PostArgs {
   post: {
@@ -40,6 +41,70 @@ export const postResolvers = {
           title,
           content,
           authorId: 1,
+        },
+      }),
+    };
+  },
+
+  postUpdate: async (
+    _: any,
+    { postId, post }: { postId: string; post: PostArgs['post'] },
+    { prisma }: Context
+  ) => {
+    const error = await canUserMutatePost({
+      userId: 1,
+      postId: Number(postId),
+      prisma,
+    });
+
+    if (error) return error;
+
+    const { title, content } = post;
+
+    if (!title && !content) {
+      return {
+        userErrors: [
+          {
+            message: 'Need to have at least on e field to update',
+          },
+        ],
+        post: null,
+      };
+    }
+
+    const existingPost = await prisma.post.findUnique({
+      where: {
+        id: Number(postId),
+      },
+    });
+
+    if (!existingPost) {
+      return {
+        userErrors: [
+          {
+            message: 'Post does not exist',
+          },
+        ],
+        post: null,
+      };
+    }
+
+    let payloadToUpdate = {
+      title,
+      content,
+    };
+
+    if (!title) delete payloadToUpdate.title;
+    if (!content) delete payloadToUpdate.content;
+
+    return {
+      userErrors: [],
+      post: prisma.post.update({
+        data: {
+          ...payloadToUpdate,
+        },
+        where: {
+          id: Number(postId),
         },
       }),
     };
