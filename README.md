@@ -1,5 +1,5 @@
 # Implementing API by Graphql
-The Blog-server is built node.js(typescript),Postgresql(prisma) and graphql(apollo-server).
+The Blog-server is built node.js (typescript), Postgresql(prisma) and Graphql (apollo-server).
 
 ## Installing prerequisite
 
@@ -14,3 +14,5 @@ Apollo Studio is a cloud platform that helps you build, validate, and secure you
 ```sh
 npm install apollo-server-express apollo-server-core express graphql
 ````
+[https://studio.apollographql.com/sandbox/explorer](https://studio.apollographql.com/sandbox/explorer)
+
