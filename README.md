@@ -10,15 +10,7 @@ npm i -D nodemon typescript ts-node-dev @types/node
 tsc --init
 ```
 
-Apollo Studio is a cloud platform that helps you build, validate, and secure your organization's graph. [Get started here!](https://www.apollographql.com/docs/studio/getting-started/)
-
-```sh
-npm install apollo-server graphql
-```
-
-Let's get started. [https://studio.apollographql.com/sandbox/explorer](https://studio.apollographql.com/sandbox/explorer)
-
-## What is Prisma?
+## Installing Prisma
 
 [Prisma](https://www.prisma.io/docs/getting-started) is an open source next-generation ORM. It consists of the following parts:
 
@@ -54,3 +46,13 @@ datasource db {
 npx prisma db push
 npx prisma studio
 ```
+
+## Installing Apollo server
+
+Apollo Studio is a cloud platform that helps you build, validate, and secure your organization's graph. [Get started here!](https://www.apollographql.com/docs/studio/getting-started/)
+
+```sh
+npm install apollo-server graphql
+```
+
+Let's get started. [https://studio.apollographql.com/sandbox/explorer](https://studio.apollographql.com/sandbox/explorer)
