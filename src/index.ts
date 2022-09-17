@@ -1,25 +1,18 @@
 import { ApolloServer, gql } from 'apollo-server';
 import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
-
-const typeDefs = gql`
-  type Query {
-    hello: String!
-  }
-`;
-const resolvers = {
-  Query: {
-    hello: () => 'Hello world!',
-  },
-};
+import { Query } from './resolvers';
+import { typeDefs } from './schema';
 
 const server = new ApolloServer({
   typeDefs,
-  resolvers,
+  resolvers: {
+    Query,
+  },
   csrfPrevention: true,
   cache: 'bounded',
   plugins: [ApolloServerPluginLandingPageLocalDefault({ embed: true })],
 });
 
-server.listen().then(({ url }) => {
+server.listen({ port: 8082 }).then(({ url }) => {
   console.log(`Server ready at ${url}`);
 });

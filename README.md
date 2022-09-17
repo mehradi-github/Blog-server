@@ -16,4 +16,4 @@ Apollo Studio is a cloud platform that helps you build, validate, and secure you
 npm install apollo-server graphql
 ```
 
-[https://studio.apollographql.com/sandbox/explorer](https://studio.apollographql.com/sandbox/explorer)
+Let's get started. [https://studio.apollographql.com/sandbox/explorer](https://studio.apollographql.com/sandbox/explorer)
