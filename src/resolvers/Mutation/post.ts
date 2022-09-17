@@ -109,4 +109,46 @@ export const postResolvers = {
       }),
     };
   },
+
+  postDelete: async (
+    _: any,
+    { postId }: { postId: string },
+    { prisma }: Context
+  ): Promise<PostPayloadType> => {
+    const error = await canUserMutatePost({
+      userId: 1,
+      postId: Number(postId),
+      prisma,
+    });
+
+    if (error) return error;
+
+    const post = await prisma.post.findUnique({
+      where: {
+        id: Number(postId),
+      },
+    });
+
+    if (!post) {
+      return {
+        userErrors: [
+          {
+            message: 'Post does not exist',
+          },
+        ],
+        post: null,
+      };
+    }
+
+    await prisma.post.delete({
+      where: {
+        id: Number(postId),
+      },
+    });
+
+    return {
+      userErrors: [],
+      post,
+    };
+  },
 };
