@@ -125,3 +125,17 @@ const token = JWT.sign({ userId: user.id }, JSON_SIGNATURE, {
       }),
 const userInfo= JWT.verify(token, JSON_SIGNATURE) as { userId: number };
 ```
+
+## Installing dataloader
+
+[DataLoader](https://www.npmjs.com/package/dataloader) is a generic utility to be used as part of your application's data fetching layer to provide a simplified and consistent API over various remote data sources such as databases or web services via **batching and caching**.
+
+```sh
+npm i dataloader
+```
+
+```javascript
+export const userLoader = new Dataloader<number, User>(batchUsers);
+
+userLoader.load(id);
+```
