@@ -1,2 +1,3 @@
 export * from './Query';
-// export * from './Mutation/Mutation';
+export * from './Mutation';
+export * from './Profile';
