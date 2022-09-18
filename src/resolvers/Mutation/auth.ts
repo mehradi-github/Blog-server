@@ -18,6 +18,12 @@ interface UserPayload {
   }[];
   token: string | null;
 }
+interface SigninArgs {
+  credentials: {
+    email: string;
+    password: string;
+  };
+}
 export const authResolver = {
   signup: async (
     _: any,
@@ -74,6 +80,41 @@ export const authResolver = {
         userId: user.id,
       },
     });
+
+    return {
+      userErrors: [],
+      token: JWT.sign({ userId: user.id }, JSON_SIGNATURE, {
+        expiresIn: 3600000,
+      }),
+    };
+  },
+
+  signin: async (
+    _: any,
+    { credentials }: SigninArgs,
+    { prisma }: Context
+  ): Promise<UserPayload> => {
+    const { email, password } = credentials;
+    const user = await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+    if (!user) {
+      return {
+        userErrors: [{ message: 'Invalid credentials' }],
+        token: null,
+      };
+    }
+
+    const isMatch = bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+      return {
+        userErrors: [{ message: 'Invalid credentials' }],
+        token: null,
+      };
+    }
 
     return {
       userErrors: [],
