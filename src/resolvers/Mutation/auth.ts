@@ -1,6 +1,8 @@
 import { Context } from '../..';
 import validator from 'validator';
 import bcrypt from 'bcryptjs';
+import JWT from 'jsonwebtoken';
+import { JSON_SIGNATURE } from '../../../keys';
 
 interface SignupArgs {
   credentials: {
@@ -75,7 +77,9 @@ export const authResolver = {
 
     return {
       userErrors: [],
-      token: 'ok',
+      token: JWT.sign({ userId: user.id }, JSON_SIGNATURE, {
+        expiresIn: 3600000,
+      }),
     };
   },
 };

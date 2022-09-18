@@ -20,6 +20,7 @@
   "homepage": "https://github.com/mehradi-github/Blog-server#readme",
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
+    "@types/jsonwebtoken": "^8.5.9",
     "@types/node": "^18.7.18",
     "@types/validator": "^13.7.6",
     "@typescript-eslint/eslint-plugin": "^5.37.0",
@@ -37,6 +38,7 @@
     "apollo-server": "^3.10.2",
     "bcryptjs": "^2.4.3",
     "graphql": "^16.6.0",
+    "jsonwebtoken": "^8.5.1",
     "prisma": "^4.3.1",
     "validator": "^13.7.0"
   }

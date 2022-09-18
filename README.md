@@ -57,3 +57,18 @@ npm install apollo-server graphql
 ```
 
 Let's get started. [https://studio.apollographql.com/sandbox/explorer](https://studio.apollographql.com/sandbox/explorer)
+
+## Installing JSON Web Token (JWT)
+
+JSON [Web Token (JWT)](https://www.rfc-editor.org/rfc/rfc7519) is a compact, URL-safe means of representing claims to be transferred between two parties. The claims in a JWT are encoded as a JSON object that is used as the payload of a JSON Web Signature (JWS) structure or as the plaintext of a JSON Web Encryption (JWE) structure, enabling the claims to be digitally signed or integrity protected with a Message Authentication Code (MAC) and/or encrypted.
+
+```sh
+npm i jsonwebtoken
+npm i -D @types/jsonwebtoken
+```
+
+```javascript
+const token = JWT.sign({ userId: user.id }, JSON_SIGNATURE, {
+        expiresIn: 3600000,
+      }),
+```
