@@ -71,4 +71,5 @@ npm i -D @types/jsonwebtoken
 const token = JWT.sign({ userId: user.id }, JSON_SIGNATURE, {
         expiresIn: 3600000,
       }),
+const userInfo= JWT.verify(token, JSON_SIGNATURE) as { userId: number };
 ```
