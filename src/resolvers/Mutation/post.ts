@@ -50,7 +50,7 @@ export const postResolvers = {
     _: any,
     { postId, post }: { postId: string; post: PostArgs['post'] },
     { prisma }: Context
-  ) => {
+  ): Promise<PostPayloadType> => {
     const error = await canUserMutatePost({
       userId: 1,
       postId: Number(postId),

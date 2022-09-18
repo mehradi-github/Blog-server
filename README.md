@@ -6,7 +6,8 @@ The Blog-server is built node.js (typescript), Postgresql(prisma) and Graphql (a
 
 ```sh
 npm init -y
-npm i -D nodemon typescript ts-node-dev @types/node
+npm i validator
+npm i -D nodemon typescript ts-node-dev @types/node @types/validator
 tsc --init
 ```
 
