@@ -1,5 +1,7 @@
 import { Context } from '../..';
 import validator from 'validator';
+import bcrypt from 'bcryptjs';
+
 interface SignupArgs {
   credentials: {
     email: string;
@@ -32,17 +34,6 @@ export const authResolver = {
         token: null,
       };
     }
-    const isValidPassword = validator.isLength(password, { min: 8 });
-    if (!isValidPassword) {
-      return {
-        userErrors: [
-          {
-            message: 'Invalid password',
-          },
-        ],
-        token: null,
-      };
-    }
 
     if (!name || !bio) {
       return {
@@ -55,11 +46,24 @@ export const authResolver = {
       };
     }
 
+    const isValidPassword = validator.isLength(password, { min: 8 });
+    if (!isValidPassword) {
+      return {
+        userErrors: [
+          {
+            message: 'Invalid password',
+          },
+        ],
+        token: null,
+      };
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
     const user = await prisma.user.create({
       data: {
         email,
         name,
-        password: password,
+        password: hashedPassword,
       },
     });
     await prisma.profile.create({
