@@ -9,9 +9,18 @@ export const Query = {
       },
     });
   },
-  posts: async (_: any, __: any, { prisma }: Context) => {
+  posts: async (
+    _: any,
+    { take, skip }: { take: number; skip: number },
+    { prisma }: Context
+  ) => {
     return await prisma.post.findMany({
+      where: {
+        published: true,
+      },
       orderBy: [{ createdAt: 'desc' }],
+      skip,
+      take,
     });
   },
   profile: async (

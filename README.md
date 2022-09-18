@@ -87,7 +87,7 @@ mutation PostCreate($post: PostInput!) {
     }
   }
 }
-query Profile($userId: ID!) {
+query Profile($userId: ID!, $take: Int!, $skip: Int!) {
   profile(userId: $userId) {
     id
     bio
@@ -96,7 +96,7 @@ query Profile($userId: ID!) {
       id
       email
       name
-      posts {
+      posts(take: $take, skip: $skip) {
         id
         title
         content
