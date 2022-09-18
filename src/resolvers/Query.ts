@@ -11,7 +11,7 @@ export const Query = {
   },
   posts: async (_: any, __: any, { prisma }: Context) => {
     return await prisma.post.findMany({
-      orderBy: [{ createAt: 'desc' }],
+      orderBy: [{ createdAt: 'desc' }],
     });
   },
   profile: async (

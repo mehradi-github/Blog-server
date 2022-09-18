@@ -56,6 +56,58 @@ Apollo Studio is a cloud platform that helps you build, validate, and secure you
 npm install apollo-server graphql
 ```
 
+```javascript
+mutation Signup($credentials: CredentialsInput!, $name: String!, $bio: String!) {
+  signup(credentials: $credentials, name: $name, bio: $bio) {
+    userErrors {
+      message
+    }
+    token
+  }
+}
+mutation Signin($credentials: CredentialsInput!) {
+  signin(credentials: $credentials) {
+    token
+    userErrors {
+      message
+    }
+  }
+}
+mutation PostCreate($post: PostInput!) {
+  postCreate(post: $post) {
+    userErrors {
+      message
+    }
+    post {
+      id
+      title
+      content
+      published
+      createdAt
+    }
+  }
+}
+query Profile($userId: ID!) {
+  profile(userId: $userId) {
+    id
+    bio
+    isMyProfile
+    user {
+      id
+      email
+      name
+      posts {
+        id
+        title
+        content
+        published
+        createdAt
+      }
+    }
+  }
+}
+```
+
 Let's get started. [https://studio.apollographql.com/sandbox/explorer](https://studio.apollographql.com/sandbox/explorer)
 
 ## Installing JSON Web Token (JWT)

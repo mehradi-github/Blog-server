@@ -38,7 +38,7 @@ export const typeDefs = gql`
     title: String!
     content: String!
     published: Boolean!
-    createAt: String!
+    createdAt: String!
     user: User!
   }
 
