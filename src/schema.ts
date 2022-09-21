@@ -4,7 +4,7 @@ export const typeDefs = gql`
   type Query {
     me: User
     posts(take: Int!, skip: Int!): [Post!]!
-    profile(userId: ID!): Profile
+    profile(userId: ID): Profile
   }
   type Mutation {
     postCreate(post: PostInput!): PostPayload!

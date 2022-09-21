@@ -25,9 +25,10 @@ export const Query = {
   },
   profile: async (
     _: any,
-    { userId }: { userId: string },
+    { userId }: { userId: string | null },
     { prisma, userInfo }: Context
   ) => {
+    userId = userInfo && !userId ? userInfo?.userId.toString() : userId;
     const isMyProfile = Number(userId) === userInfo?.userId;
 
     const profile = await prisma.profile.findUnique({
